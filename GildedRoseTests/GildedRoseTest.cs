@@ -9,19 +9,19 @@ namespace GildedRoseTests
         [Fact]
         public void UpdateQualityOfConjuredItem()
         {
-            IList<Item> Items = new List<Item> { new ConjuredItem() { Name = "foo", SellIn = 10, Quality = 10 } };
-            GildedRose app = new GildedRose(Items);
+            var items = new List<Item> { new ConjuredItem() { Name = "ConjuredFoo", SellIn = 10, Quality = 10 } };
+            var app = new GildedRose(items);
             app.UpdateQuality();
-            Assert.Equal(8, Items[0].Quality);
+            Assert.Equal(8, items[0].Quality);
         }
 
         [Fact]
         public void UpdateQualityOfConjuredItemAfterSellDateHasPassed()
         {
-            IList<Item> Items = new List<Item> { new ConjuredItem() { Name = "foo", SellIn = 0, Quality = 10 } };
-            GildedRose app = new GildedRose(Items);
+            var items = new List<Item> { new ConjuredItem() { Name = "ConjuredFoo", SellIn = 0, Quality = 10 } };
+            var app = new GildedRose(items);
             app.UpdateQuality();
-            Assert.Equal(6, Items[0].Quality);
+            Assert.Equal(6, items[0].Quality);
         }
     }
 }

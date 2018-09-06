@@ -22,12 +22,10 @@ namespace GildedRoseTavern
             foreach (var item in _items)
             {
                 var qualtiyStrategy = QualityStrategyFactory.GetFactoryFor(item);
+
                 qualtiyStrategy.UpdateQualityBeforeSellDate();
 
-                if (item.Name != Sulfuras)
-                {
-                    item.SellIn = item.SellIn - 1;
-                }
+                item.DecreaseSellIn();
 
                 if (item.SellDateHasPassed())
                 {

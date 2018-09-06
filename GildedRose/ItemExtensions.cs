@@ -2,11 +2,6 @@
 {
     public static class ItemExtensions
     {
-        public static bool SellDateHasPassed(this Item item)
-        {
-            return item.SellIn < 0;
-        }
-
         public static void IncreaseQuality(this Item item)
         {
             if (item.Quality < 50)
@@ -21,7 +16,7 @@
             {
                 item.Quality += value;
             }
-            else if (item.Name != GildedRose.Sulfuras)
+            else
             {
                 item.Quality = 50;
             }
@@ -50,6 +45,18 @@
         public static void MakeQualityZero(this Item item)
         {
             item.Quality = 0;
+        }
+
+        public static void DecreaseSellIn(this Item item)
+        {
+            item.SellIn = item.Name != GildedRose.Sulfuras
+                ? item.SellIn - 1
+                : item.SellIn;
+        }
+
+        public static bool SellDateHasPassed(this Item item)
+        {
+            return item.SellIn < 0;
         }
     }
 }
