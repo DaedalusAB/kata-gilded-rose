@@ -2,25 +2,29 @@
 {
     public class BackstagePassesQualityStrategy : QualityStrategy
     {
-        public override void UpdateQualityBeforeSellDate(Item item)
+        public BackstagePassesQualityStrategy(Item item) : base(item)
         {
-            if (item.SellIn <= 5)
+        }
+
+        public override void UpdateQualityBeforeSellDate()
+        {
+            if (_item.SellIn <= 5)
             {
-                item.IncreaseQualityBy(3);
+                _item.IncreaseQualityBy(3);
             }
-            else if (item.SellIn <= 10)
+            else if (_item.SellIn <= 10)
             {
-                item.IncreaseQualityBy(2);
+                _item.IncreaseQualityBy(2);
             }
             else
             {
-                item.IncreaseQuality();
+                _item.IncreaseQuality();
             }
         }
 
-        public override void UpdateQualityAfterSellDate(Item item)
+        public override void UpdateQualityAfterSellDate()
         {
-            item.MakeQualityZero();
+            _item.MakeQualityZero();
         }
     }
 }

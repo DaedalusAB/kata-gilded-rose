@@ -2,7 +2,14 @@
 {
     public abstract class QualityStrategy
     {
-        public abstract void UpdateQualityBeforeSellDate(Item item);
-        public abstract void UpdateQualityAfterSellDate(Item item);
+        protected Item _item;
+
+        protected QualityStrategy(Item item)
+        {
+            _item = item;
+        }
+
+        public abstract void UpdateQualityBeforeSellDate();
+        public abstract void UpdateQualityAfterSellDate();
     }
 }

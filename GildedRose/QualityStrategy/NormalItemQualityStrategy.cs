@@ -2,14 +2,17 @@
 {
     public class NormalItemQualityStrategy : QualityStrategy
     {
-        public override void UpdateQualityBeforeSellDate(Item item)
+        public NormalItemQualityStrategy(Item item) : base(item)
         {
-            item.DecreaseQuality();
+        }
+        public override void UpdateQualityBeforeSellDate()
+        {
+            _item.DecreaseQuality();
         }
 
-        public override void UpdateQualityAfterSellDate(Item item)
+        public override void UpdateQualityAfterSellDate()
         {
-            item.DecreaseQuality();
+            _item.DecreaseQuality();
         }
     }
 }

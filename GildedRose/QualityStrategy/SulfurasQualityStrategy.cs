@@ -2,12 +2,16 @@
 {
     public class SulfurasQualityStrategy : QualityStrategy
     {
-        public override void UpdateQualityBeforeSellDate(Item item)
+        public SulfurasQualityStrategy(Item item) : base(item)
+        {
+            
+        }
+        public override void UpdateQualityBeforeSellDate()
         {
             return;
         }
 
-        public override void UpdateQualityAfterSellDate(Item item)
+        public override void UpdateQualityAfterSellDate()
         {
             return;
         }

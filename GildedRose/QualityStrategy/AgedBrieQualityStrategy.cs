@@ -2,14 +2,18 @@
 {
     public class AgedBrieQualityStrategy : QualityStrategy
     {
-        public override void UpdateQualityBeforeSellDate(Item item)
+        public AgedBrieQualityStrategy(Item item) : base(item)
         {
-            item.IncreaseQuality();
         }
 
-        public override void UpdateQualityAfterSellDate(Item item)
+        public override void UpdateQualityBeforeSellDate()
         {
-            item.IncreaseQuality();
+            _item.IncreaseQuality();
+        }
+
+        public override void UpdateQualityAfterSellDate()
+        {
+            _item.IncreaseQuality();
         }
     }
 }

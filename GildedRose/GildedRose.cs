@@ -5,38 +5,24 @@ namespace GildedRoseTavern
 {
     public class GildedRose
     {
-        IList<Item> Items;
+        readonly IList<Item> _items;
 
-        public static string AgedBrie = "Aged Brie";
-        public static string Sulfuras = "Sulfuras, Hand of Ragnaros";
-        public static string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
+        public const string AgedBrie = "Aged Brie";
+        public const string Sulfuras = "Sulfuras, Hand of Ragnaros";
+        public const string BackstagePasses = "Backstage passes to a TAFKAL80ETC concert";
 
 
-        public GildedRose(IList<Item> Items)
+        public GildedRose(IList<Item> items)
         {
-            this.Items = Items;
+            _items = items;
         }
 
         public void UpdateQuality()
         {
-            foreach (var item in Items)
+            foreach (var item in _items)
             {
-                if (item.Name == AgedBrie)
-                {
-                    new AgedBrieQualityStrategy().UpdateQualityBeforeSellDate(item);
-                }
-                else if (item.Name == Sulfuras)
-                {
-                    new SulfurasQualityStrategy().UpdateQualityBeforeSellDate(item);
-                }
-                else if (item.Name == BackstagePasses)
-                {
-                    new BackstagePassesQualityStrategy().UpdateQualityBeforeSellDate(item);
-                }
-                else
-                {
-                    new NormalItemQualityStrategy().UpdateQualityBeforeSellDate(item);
-                }
+                var qualtiyStrategy = QualityStrategyFactory.GetFactoryFor(item);
+                qualtiyStrategy.UpdateQualityBeforeSellDate();
 
                 if (item.Name != Sulfuras)
                 {
@@ -45,22 +31,7 @@ namespace GildedRoseTavern
 
                 if (item.SellDateHasPassed())
                 {
-                    if (item.Name == AgedBrie)
-                    {
-                        new AgedBrieQualityStrategy().UpdateQualityAfterSellDate(item);
-                    }
-                    else if (item.Name == Sulfuras)
-                    {
-                        new SulfurasQualityStrategy().UpdateQualityAfterSellDate(item);
-                    }
-                    else if (item.Name == BackstagePasses)
-                    {
-                        new BackstagePassesQualityStrategy().UpdateQualityAfterSellDate(item);
-                    }
-                    else
-                    {
-                        new NormalItemQualityStrategy().UpdateQualityAfterSellDate(item);
-                    }
+                    qualtiyStrategy.UpdateQualityAfterSellDate();
                 }
             }
         }
