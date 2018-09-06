@@ -4,7 +4,7 @@ using Xunit;
 
 namespace GildedRoseTests
 {
-    public class GildedRoseTest
+    public class ConjuredItemTests
     {
         [Fact]
         public void UpdateQualityOfConjuredItem()
