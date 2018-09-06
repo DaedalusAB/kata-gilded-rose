@@ -4,6 +4,11 @@
     {
         public static QualityStrategy GetFactoryFor(Item item)
         {
+            if (item is ConjuredItem)
+            {
+                return new ConjuredItemQualityStrategy(item);
+            }
+
             switch (item.Name)
             {
                 case (GildedRose.AgedBrie):

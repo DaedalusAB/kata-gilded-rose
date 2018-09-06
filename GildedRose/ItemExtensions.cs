@@ -35,6 +35,18 @@
             }
         }
 
+        public static void DecreaseQualityBy(this Item item, int value)
+        {
+            if (item.Quality - value >= 0)
+            {
+                item.Quality -= value;
+            }
+            else
+            {
+                item.Quality = 0;
+            }
+        }
+
         public static void MakeQualityZero(this Item item)
         {
             item.Quality = 0;
