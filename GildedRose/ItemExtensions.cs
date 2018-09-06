@@ -15,6 +15,18 @@
             }
         }
 
+        public static void IncreaseQualityBy(this Item item, int value)
+        {
+            if (item.Quality + value <= 50)
+            {
+                item.Quality += value;
+            }
+            else if (item.Name != GildedRose.Sulfuras)
+            {
+                item.Quality = 50;
+            }
+        }
+
         public static void DecreaseQuality(this Item item)
         {
             if (item.Quality > 0)

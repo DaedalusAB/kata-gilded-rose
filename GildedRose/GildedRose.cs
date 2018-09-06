@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using GildedRoseTavern.QualityStrategy;
 
 namespace GildedRoseTavern
 {
@@ -20,26 +21,21 @@ namespace GildedRoseTavern
         {
             foreach (var item in Items)
             {
-                if (item.Name != AgedBrie && item.Name != BackstagePasses && item.Name != Sulfuras)
+                if (item.Name == AgedBrie)
                 {
-                    item.DecreaseQuality();
+                    new AgedBrieQualityStrategy().UpdateQualityBeforeSellDate(item);
+                }
+                else if (item.Name == Sulfuras)
+                {
+                    new SulfurasQualityStrategy().UpdateQualityBeforeSellDate(item);
+                }
+                else if (item.Name == BackstagePasses)
+                {
+                    new BackstagePassesQualityStrategy().UpdateQualityBeforeSellDate(item);
                 }
                 else
                 {
-                    item.IncreaseQuality();
-
-                    if (item.Name == BackstagePasses)
-                    {
-                        if (item.SellIn < 11)
-                        {
-                            item.IncreaseQuality();
-                        }
-
-                        if (item.SellIn < 6)
-                        {
-                            item.IncreaseQuality();
-                        }
-                    }
+                    new NormalItemQualityStrategy().UpdateQualityBeforeSellDate(item);
                 }
 
                 if (item.Name != Sulfuras)
@@ -49,26 +45,21 @@ namespace GildedRoseTavern
 
                 if (item.SellDateHasPassed())
                 {
-                    if (item.Name != AgedBrie)
+                    if (item.Name == AgedBrie)
                     {
-                        if (item.Name != BackstagePasses)
-                        {
-                            if (item.Name != Sulfuras)
-                            {
-                                item.DecreaseQuality();
-                            }
-                        }
-                        else
-                        {
-                            item.MakeQualityZero();
-                        }
+                        new AgedBrieQualityStrategy().UpdateQualityAfterSellDate(item);
+                    }
+                    else if (item.Name == Sulfuras)
+                    {
+                        new SulfurasQualityStrategy().UpdateQualityAfterSellDate(item);
+                    }
+                    else if (item.Name == BackstagePasses)
+                    {
+                        new BackstagePassesQualityStrategy().UpdateQualityAfterSellDate(item);
                     }
                     else
                     {
-                        if (item.Quality < 50)
-                        {
-                            item.IncreaseQuality();
-                        }
+                        new NormalItemQualityStrategy().UpdateQualityAfterSellDate(item);
                     }
                 }
             }
