@@ -6,14 +6,16 @@
         {
         }
 
-        public override void UpdateQualityBeforeSellDate()
+        public override void UpdateQuality()
         {
-            _item.IncreaseQuality();
-        }
-
-        public override void UpdateQualityAfterSellDate()
-        {
-            _item.IncreaseQuality();
+            if (!_item.SellDateHasPassed())
+            {
+                _item.IncreaseQuality();
+            }
+            else 
+            {
+                _item.IncreaseQualityBy(2);
+            }
         }
     }
 }

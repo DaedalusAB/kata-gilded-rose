@@ -6,12 +6,7 @@
         {
             
         }
-        public override void UpdateQualityBeforeSellDate()
-        {
-            return;
-        }
-
-        public override void UpdateQualityAfterSellDate()
+        public override void UpdateQuality()
         {
             return;
         }

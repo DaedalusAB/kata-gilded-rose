@@ -9,7 +9,6 @@
             _item = item;
         }
 
-        public abstract void UpdateQualityBeforeSellDate();
-        public abstract void UpdateQualityAfterSellDate();
+        public abstract void UpdateQuality();
     }
 }

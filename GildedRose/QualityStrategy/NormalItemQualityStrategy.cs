@@ -5,14 +5,16 @@
         public NormalItemQualityStrategy(Item item) : base(item)
         {
         }
-        public override void UpdateQualityBeforeSellDate()
+        public override void UpdateQuality()
         {
-            _item.DecreaseQuality();
-        }
-
-        public override void UpdateQualityAfterSellDate()
-        {
-            _item.DecreaseQuality();
+            if (!_item.SellDateHasPassed())
+            {
+                _item.DecreaseQuality();
+            }
+            else
+            {
+                _item.DecreaseQualityBy(2);
+            }
         }
     }
 }

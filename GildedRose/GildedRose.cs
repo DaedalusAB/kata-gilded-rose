@@ -23,14 +23,8 @@ namespace GildedRoseTavern
             {
                 var qualtiyStrategy = QualityStrategyFactory.GetFactoryFor(item);
 
-                qualtiyStrategy.UpdateQualityBeforeSellDate();
-
                 item.DecreaseSellIn();
-
-                if (item.SellDateHasPassed())
-                {
-                    qualtiyStrategy.UpdateQualityAfterSellDate();
-                }
+                qualtiyStrategy.UpdateQuality();
             }
         }
     }
