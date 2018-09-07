@@ -1,8 +1,8 @@
 ﻿namespace GildedRoseTavern.QualityStrategy
 {
-    public class BackstagePassesQualityStrategy : QualityStrategy
+    public class BackstagePassesUpdateStrategy : UpdateStrategy
     {
-        public BackstagePassesQualityStrategy(Item item) : base(item)
+        public BackstagePassesUpdateStrategy(Item item) : base(item)
         {
         }
 
@@ -25,5 +25,8 @@
                 _item.IncreaseQuality();
             }
         }
+
+        public override void DecreaseSellIn() =>
+            _item.SellIn--;
     }
 }

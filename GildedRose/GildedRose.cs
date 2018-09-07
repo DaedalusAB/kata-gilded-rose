@@ -22,10 +22,7 @@ namespace GildedRoseTavern
         {
             foreach (var item in _items)
             {
-                var qualtiyStrategy = QualityStrategyFactory.GetFactoryFor(item);
-
-                item.DecreaseSellIn();
-                qualtiyStrategy.UpdateQuality();
+                UpdateStrategyFactory.GetStrategyFor(item).Update();
             }
         }
     }

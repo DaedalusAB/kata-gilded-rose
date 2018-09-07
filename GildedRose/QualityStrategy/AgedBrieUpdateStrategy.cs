@@ -1,8 +1,8 @@
 ﻿namespace GildedRoseTavern.QualityStrategy
 {
-    public class AgedBrieQualityStrategy : QualityStrategy
+    public class AgedBrieUpdateStrategy : UpdateStrategy
     {
-        public AgedBrieQualityStrategy(Item item) : base(item)
+        public AgedBrieUpdateStrategy(Item item) : base(item)
         {
         }
 
@@ -17,5 +17,8 @@
                 _item.IncreaseQualityBy(2);
             }
         }
+
+        public override void DecreaseSellIn() =>
+            _item.SellIn--;
     }
 }
