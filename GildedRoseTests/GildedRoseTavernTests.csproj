@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GildedRoseConsole\GildedRoseConsole.csproj" />
-    <ProjectReference Include="..\GildedRose\GildedRose.csproj" />
+    <ProjectReference Include="..\GildedRoseConsole\GildedRoseTavernConsole.csproj" />
+    <ProjectReference Include="..\GildedRose\GildedRoseTavern.csproj" />
   </ItemGroup>
 
   <ItemGroup>
