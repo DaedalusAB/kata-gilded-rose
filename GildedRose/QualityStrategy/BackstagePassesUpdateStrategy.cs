@@ -11,23 +11,29 @@
 
         protected override void UpdateQuality()
         {
-            if (Item.SellIn < 0)
+            if (Item.SellDateHasPassed())
             {
                 Item.MakeQualityZero();
             }
-            else if (Item.SellIn < 5)
+            else 
             {
-                Item.IncreaseQualityBy(3);
-            }
-            else if (Item.SellIn < 10)
-            {
-                Item.IncreaseQualityBy(2);
-            }
-            else
-            {
-                Item.IncreaseQualityBy(1);
+                Item.IncreaseQualityBy(QualityIncreaseBasedOnSellIn());
             }
         }
 
+        private int QualityIncreaseBasedOnSellIn()
+        {
+            if (Item.SellIn < 5)
+            {
+                return 3;
+            }
+
+            if (Item.SellIn < 10)
+            {
+                return 2;
+            }
+
+            return 1;
+        }
     }
 }
