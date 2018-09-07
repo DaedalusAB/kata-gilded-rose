@@ -6,27 +6,28 @@
         {
         }
 
-        public override void UpdateQuality()
+        protected override void DecreaseSellIn() =>
+            Item.DecreaseSellIn();
+
+        protected override void UpdateQuality()
         {
-            if (_item.SellIn < 0)
+            if (Item.SellIn < 0)
             {
-                _item.MakeQualityZero();
+                Item.MakeQualityZero();
             }
-            else if (_item.SellIn < 5)
+            else if (Item.SellIn < 5)
             {
-                _item.IncreaseQualityBy(3);
+                Item.IncreaseQualityBy(3);
             }
-            else if (_item.SellIn < 10)
+            else if (Item.SellIn < 10)
             {
-                _item.IncreaseQualityBy(2);
+                Item.IncreaseQualityBy(2);
             }
             else
             {
-                _item.IncreaseQuality();
+                Item.IncreaseQualityBy(1);
             }
         }
 
-        public override void DecreaseSellIn() =>
-            _item.SellIn--;
     }
 }

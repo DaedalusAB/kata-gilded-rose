@@ -4,14 +4,14 @@
     {
         public SulfurasUpdateStrategy(Item item) : base(item)
         {
-            
         }
-        public override void UpdateQuality()
+
+        protected override void DecreaseSellIn()
         {
             return;
         }
 
-        public override void DecreaseSellIn()
+        protected override void UpdateQuality()
         {
             return;
         }

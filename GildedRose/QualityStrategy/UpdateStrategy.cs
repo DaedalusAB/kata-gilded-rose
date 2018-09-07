@@ -2,15 +2,16 @@
 {
     public abstract class UpdateStrategy
     {
-        protected Item _item;
+        protected Item Item { get; }
 
         protected UpdateStrategy(Item item)
         {
-            _item = item;
+            Item = item;
         }
 
-        public abstract void UpdateQuality();
-        public abstract void DecreaseSellIn();
+        protected abstract void DecreaseSellIn();
+
+        protected abstract void UpdateQuality();
 
         public void Update()
         {

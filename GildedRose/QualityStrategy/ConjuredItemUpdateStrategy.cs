@@ -6,10 +6,11 @@
         {
         }
 
-        public override void UpdateQuality() =>
-            _item.DecreaseQualityBy(!_item.SellDateHasPassed() ? 2 : 4);
+        protected override void DecreaseSellIn() =>
+            Item.DecreaseSellIn();
 
-        public override void DecreaseSellIn() =>
-            _item.SellIn--;
+        protected override void UpdateQuality() =>
+            Item.DecreaseQualityBy(!Item.SellDateHasPassed() ? 2 : 4);
+
     }
 }
