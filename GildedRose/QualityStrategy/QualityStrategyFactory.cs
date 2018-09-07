@@ -4,11 +4,6 @@
     {
         public static QualityStrategy GetFactoryFor(Item item)
         {
-            if (item is ConjuredItem)
-            {
-                return new ConjuredItemQualityStrategy(item);
-            }
-
             switch (item.Name)
             {
                 case (GildedRose.AgedBrie):
@@ -17,6 +12,8 @@
                     return new BackstagePassesQualityStrategy(item);
                 case (GildedRose.Sulfuras):
                     return new SulfurasQualityStrategy(item);
+                case (GildedRose.ConjuredManaCake):
+                    return new ConjuredItemQualityStrategy(item);
                 default:
                     return new NormalItemQualityStrategy(item);
             }
